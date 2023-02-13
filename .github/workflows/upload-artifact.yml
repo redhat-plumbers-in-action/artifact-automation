@@ -1,0 +1,25 @@
+---
+
+name: Upload Artifact
+on:
+  pull_request:
+    types: [ opened, reopened, synchronize ]
+
+permissions:
+  contents: read
+
+jobs:
+  upload-artifact:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Repository checkout
+        uses: actions/checkout@v3
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: README as Artifact
+          path: README.md
+
+...
