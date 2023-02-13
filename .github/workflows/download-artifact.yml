@@ -1,0 +1,31 @@
+---
+
+name: Download Artifact
+on:
+  workflow_run:
+    workflows: [ Upload Artifact ]
+    types:
+      - completed
+
+permissions:
+  contents: read
+
+jobs:
+  download-artifact:
+    if: >
+      github.event.workflow_run.event == 'pull_request' &&
+      github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+
+    steps:
+      - id: Artifact
+        name: Download Artifact
+        uses: redhat-plumbers-in-action/download-artifact@main
+        with:
+          name: README as Artifact
+
+      - name: Log Artifact data
+        run: |
+          echo "::warning::${{ steps.Artifact.outputs.README-md }}"
+
+...
