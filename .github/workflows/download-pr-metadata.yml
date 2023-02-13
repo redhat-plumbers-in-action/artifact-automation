@@ -26,6 +26,6 @@ jobs:
 
       - name: Log Artifact data
         run: |
-          echo "::warning::${{ steps.Artifact.outputs.metadata }}"
+          echo "::warning::${{ steps.Artifact.outputs.pr-metadata-json }}"
 
 ...
