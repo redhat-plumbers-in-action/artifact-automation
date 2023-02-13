@@ -1,6 +1,6 @@
 ---
 
-name: Download Artifact
+name: Download Pull Request Metadata Artifact
 on:
   workflow_run:
     workflows: [ Gather Pull Request Metadata ]
@@ -20,7 +20,7 @@ jobs:
     steps:
       - id: Artifact
         name: Download Artifact
-        uses: redhat-plumbers-in-action/download-artifact@first-version
+        uses: jamacku/download-artifact@first-version
         with:
           name: Pull Request Metadata
 

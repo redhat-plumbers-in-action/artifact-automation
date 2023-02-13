@@ -20,7 +20,7 @@ jobs:
     steps:
       - id: Artifact
         name: Download Artifact
-        uses: redhat-plumbers-in-action/download-artifact@first-version
+        uses: jamacku/download-artifact@first-version
         with:
           name: README as Artifact
 
