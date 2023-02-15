@@ -35,6 +35,9 @@ jobs:
       github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
 
+    permissions:
+      actions: write
+
     steps:
       - id: Artifact
         name: Download Artifact
