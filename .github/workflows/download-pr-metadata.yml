@@ -26,6 +26,27 @@ jobs:
 
       - name: Log Artifact data
         run: |
-          echo "::warning::${{ steps.Artifact.outputs.pr-metadata-json }}"
+          echo "::warning::${{ toJSON(steps.Artifact.outputs.metadata) }}"
+
+  download-artifact-custom:
+    needs: download-artifact
+    if: >
+      github.event.workflow_run.event == 'pull_request' &&
+      github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+
+    steps:
+      - id: Artifact
+        name: Download Artifact
+        uses: redhat-plumbers-in-action/download-artifact@main
+        with:
+          name: Pull Request Metadata
+          remove-archive: false
+          remove-extracted-files: false
+          delete-artifact: true
+
+      - name: Log Artifact data
+        run: |
+          echo "::warning::${{ toJSON(steps.Artifact.outputs.metadata) }}"
 
 ...

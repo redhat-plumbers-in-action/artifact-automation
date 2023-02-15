@@ -19,6 +19,8 @@ jobs:
       - id: Metadata
         name: Gather Pull Request Metadata
         uses: redhat-plumbers-in-action/gather-pull-request-metadata@v1
+        with:
+          metadata-file-name: metadata
 
       - name: Upload artifact with gathered metadata
         uses: actions/upload-artifact@v3
